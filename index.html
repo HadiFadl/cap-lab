@@ -155,7 +155,7 @@ body.is-presentation .live-stat strong{font-size:12px}
 a.provider-docs{font-size:10px;color:#84c6db;text-decoration:none}
 a.provider-docs:hover{text-decoration:underline}
 
-/* Guided scenarios are selectable in Presentation Mode. */
+/* v6 — Guided scenarios are selectable in Presentation Mode. */
 .presentation-scenario-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding-left:12px;border-left:1px solid #31495d}
 .presentation-scenario-controls label{font-size:10px;color:#92b4c6;font-weight:800;letter-spacing:.7px;white-space:nowrap}
 .presentation-scenario-controls .presentation-scenario-select{width:202px;max-width:48vw;min-height:35px;font-size:11px;padding:7px 9px;background:#091827}
@@ -188,7 +188,7 @@ a.provider-docs:hover{text-decoration:underline}
 @media(max-width:460px){.presentation-scenario-controls .presentation-scenario-select{min-width:120px}.presentation-scenario-controls .presentation-scenario-start{padding-left:9px;padding-right:9px}.map-scenario-guide{bottom:65px;max-height:calc(100% - 95px)}}
 @media(prefers-reduced-motion:reduce){.map-guide-track span{transition:none}}
 
-/* Compact, functional provider picker in Presentation Mode. */
+/* v6 — Compact, functional provider picker in Presentation Mode. */
 .presentation-provider-controls{
   display:flex;align-items:center;gap:13px;width:100%;min-width:0;
   padding-top:10px;border-top:1px solid #2c4558;
@@ -219,17 +219,83 @@ a.provider-docs:hover{text-decoration:underline}
   .presentation-provider-items{width:100%;flex-wrap:nowrap;overflow-x:auto;padding-bottom:5px;scrollbar-width:thin}
   .presentation-provider-item{flex:none}
 }
+
+/* Compact provider summary in Exploration; detailed information is shown only on request. */
+.provider-compact{margin-top:13px;padding:12px;}
+.provider-compact .provider-heading{margin-bottom:10px}
+.provider-current{display:flex;align-items:center;gap:9px;padding:9px;border:1px solid #315363;border-radius:8px;background:#0b2030;min-width:0}
+.provider-current-icon{display:flex;flex:none}.provider-current-icon .provider-icon{width:34px;height:34px;min-width:34px;margin:0}
+.provider-current .provider-fallback{height:23px;width:23px}
+.provider-current .provider-logo{width:25px;height:25px;inset:4px}
+.provider-current-copy{min-width:0;flex:1;line-height:1.35}
+.provider-current-copy strong{display:block;font-size:12px;color:#e8f8fb}
+.provider-current-copy span{display:block;font-size:10px;color:#8fb6c3;margin-top:3px;overflow-wrap:anywhere}
+.provider-open-btn{display:block;width:100%;margin-top:9px;min-height:36px;padding:9px 10px;font-size:11px;font-weight:750;text-align:center;border:1px solid #407788;background:#163849;color:#c3f2f2;border-radius:7px;cursor:pointer}
+.provider-open-btn:hover,.presentation-provider-details:hover{background:#21566a;color:#fff;border-color:#66c7d1}
+.presentation-provider-details{flex:none;border:1px solid #3b7889;background:#143748;color:#b6e6ee;border-radius:8px;min-height:36px;padding:6px 11px;font-size:11px;font-weight:800;cursor:pointer}
+.provider-dialog{max-width:840px;max-height:min(88vh,900px);overflow-y:auto;width:calc(100vw - 26px)}
+.provider-dialog-inner{padding:24px}
+.provider-dialog .modal-heading{position:sticky;top:-24px;z-index:2;margin:-24px -24px 15px;padding:15px 24px;background:#112236;border-bottom:1px solid #345467}
+.provider-dialog h2{margin:0 0 6px;font-size:24px}
+.provider-dialog .provider-dialog-intro{margin:0 0 12px}
+.provider-dialog .architecture-note{margin-bottom:17px}
+.provider-dialog-subheading{display:flex;gap:10px;align-items:center;margin-bottom:12px;color:#adccdb;font-size:11px;font-weight:700}
+.provider-dialog .provider-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.provider-dialog .provider-card{padding:13px;gap:5px}
+.provider-dialog .provider-card strong{font-size:13px}
+.provider-dialog .provider-card-desc{font-size:11px;line-height:1.52;flex:1}
+.provider-dialog .provider-tag{font-size:10px}
+.provider-dialog .provider-card-actions{display:flex;align-items:center;justify-content:space-between;gap:11px;width:100%;padding-top:8px;margin-top:auto;flex-wrap:wrap}
+.provider-dialog .provider-choose{width:auto;min-height:34px;margin:0;padding:8px 10px;font-size:11px}
+.provider-dialog .provider-docs{font-size:11px;white-space:nowrap;margin:0;padding:4px 0}
+.provider-dialog .provider-unavailable{margin:0}
+/* Keep the explanation at the very top of Exploration's left control panel. */
+.left-sidebar>.insight-panel{margin:13px 12px 15px;padding:14px}
+.left-sidebar>.insight-panel h3{font-size:17px}
+.left-sidebar>.insight-panel .eyebrow{font-size:9px}
+/* Map can temporarily fill the viewport in either teaching mode; the lab state is untouched. */
+.map-expand-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:9px;padding:7px 11px;border-radius:8px;border:1px solid #3c788b;background:#12394b;color:#c4eff2;font-size:11px;font-weight:800;cursor:pointer}
+.map-expand-btn:hover{background:#21566a;border-color:#64cfdd}
+.map-expand-btn span:first-child{font-size:16px;line-height:1}
+body.map-expanded{overflow:hidden}
+body.map-expanded .map-panel{position:fixed;inset:10px;z-index:100;display:flex;flex-direction:column;overflow:auto;border:1px solid #4d8092;border-radius:12px;box-shadow:0 0 0 200vmax rgba(0,5,13,.76),0 20px 85px rgba(0,0,0,.8)}
+body.map-expanded .map-panel .map-header{flex:none}
+body.map-expanded .map-panel .presentation-toolbar{display:none!important}
+body.map-expanded .map-stage,body.map-expanded.is-presentation .map-stage{height:auto!important;min-height:235px!important;flex:1 1 auto;margin-bottom:0}
+body.map-expanded .live-strip{flex:none}
+@media(max-width:760px){
+  .provider-dialog-inner{padding:15px}
+  .provider-dialog .modal-heading{top:-15px;margin:-15px -15px 13px;padding:13px 15px}
+  .provider-dialog .provider-grid{grid-template-columns:1fr}
+  .provider-dialog h2{font-size:21px}
+  body.map-expanded .map-panel{inset:5px}
+  body.map-expanded .map-panel .map-header{padding:11px 12px}
+  body.map-expanded .map-panel .map-header h1{font-size:21px}
+  body.map-expanded .map-stage{margin:0 5px}
+}
+@media(max-width:1130px){
+  .map-header{flex-wrap:wrap}
+  .map-header-meta{display:flex;width:100%;gap:8px;align-items:center;justify-content:space-between;text-align:left;flex-wrap:wrap}
+  .map-header-meta .map-expand-btn{margin-top:0}
+}
+@media(max-width:760px){
+  .map-header-meta .topology-label{display:none}
+  .map-header-meta .network-status{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.provider-open-btn,.map-expand-btn{transition:none}}
+
 </style>
 </head>
 <body>
 <div class="app-shell">
   <header class="topbar">
-    <div class="brand"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div><div class="brand-title">CAP <span>LAB</span></div><div class="brand-subtitle">DISTRIBUTED DATABASE SIMULATOR</div></div></div>
+    <div class="brand"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div><div class="brand-title">CAP <span>LAB</span><small> / 01</small></div><div class="brand-subtitle">DISTRIBUTED DATABASE SIMULATOR</div></div></div>
     <div class="topbar-center"><span class="live-dot"></span> INTERACTIVE LEARNING ENVIRONMENT <span class="separator">/</span> <span>ALL SYSTEMS SIMULATED LOCALLY</span></div>
     <div class="topbar-actions"><button class="button display-mode-btn" id="displayModeButton" type="button" aria-pressed="false" title="Switch to a larger classroom presentation view"><span class="view-icon" aria-hidden="true">▣</span><span id="displayModeLabel">Presentation mode</span></button><span id="headerMode" class="mode-tag">CP MODE</span><button class="btn-icon" id="helpButton" title="How to use this lab" aria-label="How to use this lab">?</button><button class="button ghost top-reset" id="resetButton">↺ <span>Reset lab</span></button></div>
   </header>
   <div class="workspace">
     <aside class="left-sidebar scroll-area" aria-label="Simulation configuration">
+      <div class="insight-panel"><div class="section-topline"><span class="eyebrow">LIVE / EXPLAINED</span><span class="ai-badge">CAP INSIGHT</span></div><h3>What's happening?</h3><div id="explanation" aria-live="polite"></div></div>
       <div class="panel-section">
         <div class="section-topline"><span class="eyebrow">01 / CONFIGURATION</span><span class="small-status">● LIVE</span></div>
         <h2>System setup</h2><p class="section-help">Change the architecture. Watch the network respond.</p>
@@ -238,15 +304,14 @@ a.provider-docs:hover{text-decoration:underline}
           <button data-mode="CA" class="mode-option">CA</button><button data-mode="CP" class="mode-option active">CP</button><button data-mode="AP" class="mode-option">AP</button>
         </div>
         <div class="mode-description" id="modeDescription"></div>
-        <section class="provider-examples" aria-label="Choose a database example and its replication architecture">
-  <div class="provider-heading"><span class="provider-heading-icon" aria-hidden="true">◈</span><div><strong>Real-world database examples</strong><small>Examples of the selected CAP behavior</small></div></div>
-  <label class="form-label provider-model-label" for="providerSelect">Database example / architecture</label>
-  <select id="providerSelect" class="field provider-select" aria-label="Choose a database teaching profile"></select>
-  <p id="architectureNote" class="architecture-note" aria-live="polite"></p>
-  <p id="providerNote" class="provider-note"></p>
-  <div id="providerCards" class="provider-grid" aria-live="polite"></div>
-  <p class="provider-footnote">Provider profiles are educational approximations, not real database emulators. SQLite is informational only because it has no distributed replicas.</p>
-</section>
+        <section class="provider-examples provider-compact" aria-label="Database teaching profile">
+          <div class="provider-heading"><span class="provider-heading-icon" aria-hidden="true">◈</span><div><strong>Database provider</strong><small>Selected teaching profile</small></div></div>
+          <div class="provider-current" aria-live="polite">
+            <span id="providerCurrentIcon" class="provider-current-icon" aria-hidden="true"></span>
+            <div class="provider-current-copy"><strong id="providerCurrentName">Generic</strong><span id="providerCurrentArch">Replication architecture</span></div>
+          </div>
+          <button id="providerOpenButton" type="button" class="button provider-open-btn" aria-haspopup="dialog" aria-controls="providerDialog">◈ &nbsp; Browse providers &amp; details</button>
+        </section>
         <div class="form-label spaced">Replication factor <span class="form-count" id="replicationCount">3 replicas</span></div>
         <div class="replication-switch" role="group" aria-label="Replication factor"><button data-count="3" class="count-btn active">03</button><button data-count="4" class="count-btn">04</button><button data-count="5" class="count-btn">05</button></div>
         <div class="tiny-note">Changing the replica count starts a fresh experiment.</div>
@@ -285,7 +350,7 @@ a.provider-docs:hover{text-decoration:underline}
     </aside>
     <main class="center-column">
       <section class="map-panel" aria-label="Interactive replica world map">
-        <div class="map-header"><div><div class="eyebrow bright">LIVE NETWORK TOPOLOGY <span class="map-live"><span class="live-dot"></span> SIMULATION ACTIVE</span></div><h1>Global replica network</h1><p>Click <b>a node</b> for CRUD, or <b>a dashed line</b> to partition. <b>⚑ Yellow flags</b> mean a replica is behind.</p></div><div class="map-header-meta"><div id="networkStatus" class="network-status okay">● NETWORK HEALTHY</div><div id="topologyLabel" class="topology-label">3 REPLICAS / CHAIN TOPOLOGY</div></div></div>
+        <div class="map-header"><div><div class="eyebrow bright">LIVE NETWORK TOPOLOGY <span class="map-live"><span class="live-dot"></span> SIMULATION ACTIVE</span></div><h1>Global replica network</h1><p>Click <b>a node</b> for CRUD, or <b>a dashed line</b> to partition. <b>⚑ Yellow flags</b> mean a replica is behind.</p></div><div class="map-header-meta"><div id="networkStatus" class="network-status okay">● NETWORK HEALTHY</div><div id="topologyLabel" class="topology-label">3 REPLICAS / CHAIN TOPOLOGY</div><button id="mapExpandButton" class="map-expand-btn" type="button" aria-pressed="false" title="Expand map to fill the screen"><span id="mapExpandIcon" aria-hidden="true">⛶</span><span id="mapExpandLabel">Expand map</span></button></div></div>
         <div class="presentation-toolbar" aria-label="Presentation quick settings">
           <div class="presentation-quick-controls">
             <div class="presentation-setting"><span class="presentation-setting-label">CAP FAMILY</span><div class="presentation-choice-group" role="group" aria-label="CAP mode in presentation view"><button type="button" data-mode="CA" class="quick-choice">CA</button><button type="button" data-mode="CP" class="quick-choice active">CP</button><button type="button" data-mode="AP" class="quick-choice">AP</button></div></div>
@@ -299,6 +364,7 @@ a.provider-docs:hover{text-decoration:underline}
           <div class="presentation-provider-controls" aria-label="Choose database profile in presentation mode">
             <span class="presentation-provider-title">DATABASE PROVIDER</span>
             <div id="presentationProviderChoices" class="presentation-provider-items" role="group" aria-label="Database teaching profiles"></div>
+            <button id="presentationProviderDetails" type="button" class="presentation-provider-details" aria-haspopup="dialog" aria-controls="providerDialog">ⓘ Details</button>
           </div>
         </div>
         <div class="map-stage" id="mapStage">
@@ -319,13 +385,25 @@ a.provider-docs:hover{text-decoration:underline}
     <aside class="right-sidebar scroll-area" aria-label="Replica operations and CAP explanations">
       <div class="right-header"><div class="eyebrow">INSPECTOR / LIVE</div><h2>Replica control</h2><p>Select a database on the map to inspect its state and execute operations.</p></div>
       <div id="inspector"></div>
-      <div class="insight-panel"><div class="section-topline"><span class="eyebrow">LIVE / EXPLAINED</span><span class="ai-badge">CAP INSIGHT</span></div><h3>What's happening?</h3><div id="explanation" aria-live="polite"></div></div>
+
       <div id="scenarioGuide" class="guide-panel"></div>
       <button id="assumptionsButton" class="assumptions-link">ⓘ &nbsp; Simulation assumptions and teaching notes <span>↗</span></button>
     </aside>
   </div>
 </div>
 <div id="toastHost" class="toast-host" role="status" aria-live="polite"></div>
+<dialog id="providerDialog" class="modal provider-dialog" aria-labelledby="providerDialogTitle">
+  <div class="provider-dialog-inner">
+    <div class="modal-heading"><span class="eyebrow">DATABASE TEACHING PROFILES</span><button id="providerDialogClose" type="button" class="close-dialog" aria-label="Close provider details">✕</button></div>
+    <h2 id="providerDialogTitle">Choose a database example</h2>
+    <p class="provider-dialog-intro">Choose a provider to apply its simplified replication profile, or open the official documentation. These are teaching approximations, not product emulators.</p>
+    <div id="providerDialogCurrent" class="architecture-note" aria-live="polite"></div>
+    <div class="provider-dialog-subheading"><span id="providerDialogFamily" class="mode-tag">CP</span><span>Available examples for the selected CAP family</span></div>
+    <div id="providerCards" class="provider-grid" aria-live="polite"></div>
+    <p id="providerNote" class="provider-footnote"></p>
+    <p class="provider-footnote">SQLite is shown for context only: it is a local embedded database, not a selectable distributed replica model. Real product guarantees depend on configuration.</p>
+  </div>
+</dialog>
 <dialog id="helpDialog" class="modal"><form method="dialog"><div class="modal-heading"><span class="eyebrow">QUICK START / CAP LAB</span><button class="close-dialog" aria-label="Close">✕</button></div><h2>Explore. Partition. Observe.</h2><p>CAP theorem becomes clearer when you deliberately make a distributed database fail.</p><ol class="help-steps"><li><strong>Configure your cluster.</strong><span>Choose 3–5 replicas and a CA, CP, or AP behavior model.</span></li><li><strong>Cut a network connection.</strong><span>Click the dashed link connecting two replica sites. Try cutting several.</span></li><li><strong>Submit a request.</strong><span>Select a replica and attempt an INSERT, UPDATE, DELETE, or READ.</span></li><li><strong>Observe the outcome.</strong><span>Watch packets move between cities. A yellow flag marks replicas that have not yet received the latest data.</span></li><li><strong>Heal the network.</strong><span>Reconnect the links and watch replicas catch up or reconcile conflicts.</span></li><li><strong>Present or explore.</strong><span>Use the top-right view switch for a larger classroom map or the full laboratory. Moving cyan dashes indicate healthy connections; distinct packet dots represent actual simulated messages.</span></li></ol><button class="button primary full" value="close">Start exploring →</button></form></dialog>
 <dialog id="assumptionsDialog" class="modal"><form method="dialog"><div class="modal-heading"><span class="eyebrow">UNDER THE HOOD / MODEL ACCURACY</span><button class="close-dialog" aria-label="Close">✕</button></div><h2>What this simulator models</h2><p>This is a conceptual single-key distributed database, not an implementation of Raft, Paxos, Cassandra, or any production system.</p><div class="assumption-list"><p><b>CAP consistency</b> means linearizability: successful reads do not go backward behind completed writes.</p><p><b>CP</b> uses a simplified majority-quorum leader with committed state. A reachable majority responds; minority components reject requests.</p><p><b>AP</b> permits local operations on every functioning replica and uses deterministic Last-Write-Wins resolution with logical timestamps and tombstones. It can lose an acknowledged update in a conflict.</p><p><b>CA</b> uses an illustrative fixed single primary, similar to an asynchronous primary/standby configuration. A reachable primary continues read/write operations during a partition; isolated followers reject strong requests. Automatic failover is disabled. This preserves consistency for served requests but does not guarantee CAP availability across the partition.</p><p><b>Leaders are architectural choices, not CAP categories.</b> CA shows a primary; CP shows a quorum-elected leader; AP uses independent peers in this lab. SQL Server appears as an asynchronous single-primary teaching model under CA and as an Always On AG synchronous configuration under CP. Actual SQL Server WSFC quorum/failover rules are more complex than this classroom simulation.</p><p><b>Real-world database examples</b> illustrate particular deployments, read/write guarantees, or consistency settings. A product is not permanently CA, CP, or AP in all modes. Local single-server databases avoid distributed CAP trade-offs rather than overcoming partitions.</p><p><b>Server vs. service</b> are different: an online CP minority replica is running, but cannot serve an eligible strongly consistent request.</p><p><b>Network</b> uses a chain of bidirectional links; an offline intermediate node breaks paths. Messages traverse real map edges with geography-weighted, deliberately slowed teaching delays. No measured Internet latency is implied. Replicas remain stale until updates arrive.</p></div><button class="button primary full" value="close">Understood</button></form></dialog>
 <script>
@@ -393,35 +471,51 @@ function renderPresentationProviders(){
  });
 }
 let renderedProviderMode=null;
+function providerIconHtml(id,example){
+  const color=example?.color||'#62cddd';
+  const shape=PROVIDER_ICON_SHAPES[id]||GENERIC_PROVIDER_SHAPE;
+  const logo=example?`<img class="provider-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${example.icon}" alt="" loading="lazy" decoding="async">`:'';
+  return `<span class="provider-icon" style="--provider-color:${color}"><svg class="provider-fallback" aria-hidden="true" viewBox="0 0 48 48">${shape}</svg>${logo}</span>`;
+}
+function activateProviderLogos(container){
+  container.querySelectorAll('img.provider-logo').forEach(img=>{
+    const ready=()=>img.classList.add('loaded');
+    img.addEventListener('load',ready,{once:true});
+    if(img.complete&&img.naturalWidth>0)ready();
+  });
+}
 function renderProviders(){
- const renderKey=`${state.mode}:${state.providerId}`;
- if(renderedProviderMode===renderKey)return;
- renderedProviderMode=renderKey;
- renderPresentationProviders();
- const chosen=selectedProfile();
- $('providerSelect').innerHTML=PROVIDER_PROFILES[state.mode].map(p=>`<option value="${p.id}" ${p.id===chosen.id?'selected':''}>${html(p.name)}</option>`).join('');
- $('architectureNote').innerHTML=`<strong>${html(chosen.architecture)}</strong><span>${html(chosen.summary)}</span>`;
- $('providerNote').textContent=PROVIDER_NOTES[state.mode];
- const cards=$('providerCards');
- cards.innerHTML=PROVIDER_EXAMPLES[state.mode].map(p=>{
-  // Browser fetches an authentic Devicon logo when online; original SVG illustration remains offline.
-  const logo=`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${p.icon}`;
-  const mark=`<svg class="provider-fallback" aria-hidden="true" viewBox="0 0 48 48">${PROVIDER_ICON_SHAPES[p.id]}</svg>`;
-  return `<div class="provider-card ${p.id===state.providerId?'chosen':''}" aria-label="${html(p.name)}: ${html(p.detail)}">
-   <span class="provider-icon" style="--provider-color:${p.color}">${mark}<img class="provider-logo" src="${logo}" alt="" loading="lazy" decoding="async"></span>
-   <strong>${html(p.name)}</strong>
-   <span class="provider-tag">${html(p.tag)}</span>
-   <span class="provider-card-desc">${html(p.detail)}</span>
-   ${state.mode==='CA'&&p.id==='sqlite'?`<span class="provider-unavailable">Local only · not selectable</span>`:`<button class="provider-choose" type="button" data-provider="${p.id}" ${p.id===state.providerId?'disabled':''}>${p.id===state.providerId?'✓ Selected':'Use in lab'}</button>`}
-   <a class="provider-docs" href="${html(p.url)}" target="_blank" rel="noopener noreferrer">Documentation <span aria-hidden="true">↗</span></a>
-  </div>`;
- }).join('');
- // The teaching lab itself works offline; original illustrative vector marks remain visible.
- cards.querySelectorAll('img.provider-logo').forEach(img=>{
-  const ready=()=>img.classList.add('loaded');
-  img.addEventListener('load',ready,{once:true});
-  if(img.complete&&img.naturalWidth>0)ready();
- });
+  const renderKey=`${state.mode}:${state.providerId}`;
+  if(renderedProviderMode===renderKey)return;
+  renderedProviderMode=renderKey;
+  renderPresentationProviders();
+  const chosen=selectedProfile();
+  const example=PROVIDER_EXAMPLES[state.mode].find(p=>p.id===chosen.id);
+  $('providerCurrentIcon').innerHTML=providerIconHtml(chosen.id,example);
+  $('providerCurrentName').textContent=PRESENTATION_PROVIDER_LABELS[chosen.id]||chosen.name;
+  $('providerCurrentArch').textContent=chosen.architecture;
+  activateProviderLogos($('providerCurrentIcon'));
+  $('providerDialogCurrent').innerHTML=`<strong>Currently selected: ${html(chosen.name)}</strong><span>${html(chosen.architecture)} — ${html(chosen.summary)}</span>`;
+  $('providerDialogFamily').textContent=state.mode;
+  $('providerNote').textContent=PROVIDER_NOTES[state.mode];
+  const cards=$('providerCards');
+  const generic=PROVIDER_PROFILES[state.mode][0];
+  const items=[{id:'generic',name:'Generic teaching model',tag:generic.architecture,detail:generic.summary,color:'#62cddd'},...PROVIDER_EXAMPLES[state.mode]];
+  cards.innerHTML=items.map(p=>{
+   const docs=p.url?`<a class="provider-docs" href="${html(p.url)}" target="_blank" rel="noopener noreferrer" aria-label="Official ${html(p.name)} documentation">Official documentation <span aria-hidden="true">↗</span></a>`:'';
+   const selectable=!(state.mode==='CA'&&p.id==='sqlite');
+   return `<article class="provider-card${p.id===state.providerId?' chosen':''}">
+    ${providerIconHtml(p.id,p.id==='generic'?null:p)}
+    <strong>${html(p.name)}</strong>
+    <span class="provider-tag">${html(p.tag)}</span>
+    <span class="provider-card-desc">${html(p.detail)}</span>
+    <div class="provider-card-actions">
+    ${selectable?`<button class="provider-choose" type="button" data-provider="${p.id}" ${p.id===state.providerId?'disabled':''}>${p.id===state.providerId?'✓ Using in lab':'Use in lab'}</button>`:`<span class="provider-unavailable">Local only · not selectable</span>`}
+    ${docs}
+    </div>
+   </article>`;
+  }).join('');
+  activateProviderLogos(cards);
 }
 
 const SCENARIOS={
@@ -433,11 +527,23 @@ const SCENARIOS={
 };
 let state=null; let nextGeneration=0;
 let displayMode='exploration';
+let mapExpanded=false;
+function setMapExpanded(expanded){
+  mapExpanded=Boolean(expanded);
+  document.body.classList.toggle('map-expanded',mapExpanded);
+  $('mapExpandButton').setAttribute('aria-pressed',String(mapExpanded));
+  $('mapExpandButton').title=mapExpanded?'Restore normal map layout':'Expand map to fill the screen';
+  $('mapExpandLabel').textContent=mapExpanded?'Restore map':'Expand map';
+  $('mapExpandIcon').textContent=mapExpanded?'↙':'⛶';
+}
 let mapGuideCollapsed=false; // View-only setting; never changes replica or scenario state.
 function setDisplayMode(mode){
  if(!['exploration','presentation'].includes(mode))return;
  displayMode=mode;
  document.body.classList.toggle('is-presentation',mode==='presentation');
+  const explainer=document.querySelector('.insight-panel');
+  const target=document.querySelector(mode==='presentation'?'.right-sidebar':'.left-sidebar');
+  if(target.firstElementChild!==explainer)target.prepend(explainer);
  const button=document.getElementById('displayModeButton');
  button.setAttribute('aria-pressed',String(mode==='presentation'));
  button.title=mode==='presentation'?'Return to all lab controls and monitoring panels':'Switch to a larger classroom presentation view';
@@ -824,9 +930,11 @@ function renderScenario(){
 function zoom(factor){state.view.scale=Math.min(3.2,Math.max(1,state.view.scale*factor));if(state.view.scale===1){state.view.x=0;state.view.y=0}applyMapTransform()}
 function mapPanSetup(){const svg=$('worldMap');let drag=null;svg.addEventListener('pointerdown',e=>{if(e.target.closest('[data-link],[data-node]'))return;drag={x:e.clientX,y:e.clientY,oldx:state.view.x,oldy:state.view.y};svg.classList.add('dragging');try{svg.setPointerCapture(e.pointerId)}catch{}});svg.addEventListener('pointermove',e=>{if(!drag)return;const rect=svg.getBoundingClientRect();state.view.x=drag.oldx+(e.clientX-drag.x)*1200/rect.width;state.view.y=drag.oldy+(e.clientY-drag.y)*620/rect.height;applyMapTransform()});const end=()=>{drag=null;svg.classList.remove('dragging')};svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);svg.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY<0?1.13:1/1.13)},{passive:false});}
 function attachListeners(){
- document.addEventListener('click',e=>{const mode=e.target.closest('[data-mode]'),count=e.target.closest('[data-count]'),link=e.target.closest('[data-link]'),node=e.target.closest('[data-node]'),tab=e.target.closest('[data-tab]');if(mode){setMode(mode.dataset.mode);return}const provider=e.target.closest('[data-provider]');if(provider){setProvider(provider.dataset.provider);return}if(count){setCount(count.dataset.count);return}if(link){toggleLink(link.dataset.link);return}if(node){state.selected=node.dataset.node;state.result=null;render();return}if(tab){state.tab=tab.dataset.tab;renderTabs(analyze())}});
+ document.addEventListener('click',e=>{const mode=e.target.closest('[data-mode]'),count=e.target.closest('[data-count]'),link=e.target.closest('[data-link]'),node=e.target.closest('[data-node]'),tab=e.target.closest('[data-tab]');if(mode){setMode(mode.dataset.mode);return}const provider=e.target.closest('[data-provider]');if(provider){const fromDialog=$('providerDialog').open&&$('providerDialog').contains(provider);setProvider(provider.dataset.provider);if(fromDialog)$('providerDialog').close();return}if(count){setCount(count.dataset.count);return}if(link){toggleLink(link.dataset.link);return}if(node){state.selected=node.dataset.node;state.result=null;render();return}if(tab){state.tab=tab.dataset.tab;renderTabs(analyze())}});
  document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-node],[data-link]')){e.preventDefault();e.target.click()}});
- $('providerSelect').addEventListener('change',e=>setProvider(e.target.value));
+  $('providerOpenButton').addEventListener('click',()=>$('providerDialog').showModal());
+  $('presentationProviderDetails').addEventListener('click',()=>$('providerDialog').showModal());
+  $('providerDialogClose').addEventListener('click',()=>$('providerDialog').close());
  $('inspector').addEventListener('change',e=>{if(e.target.id==='nodeSelect'){state.selected=e.target.value;state.result=null;render()}if(e.target.id==='operationSelect'){state.formOperation=e.target.value;renderInspector(analyze())}});
  $('inspector').addEventListener('input',e=>{if(e.target.id==='keyInput')state.formKey=e.target.value;if(e.target.id==='valueInput')state.formValue=e.target.value});
  $('inspector').addEventListener('click',e=>{if(e.target.closest('#nodeToggle'))toggleNode(state.selected)});
@@ -839,6 +947,8 @@ function attachListeners(){
  $('mapScenarioGuide').addEventListener('click',e=>{if(e.target.closest('#mapGuideExit')){state.scene=null;renderScenario()}else if(e.target.closest('#mapGuideToggle')){mapGuideCollapsed=!mapGuideCollapsed;renderScenario()}});
  $('zoomIn').addEventListener('click',()=>zoom(1.25));$('zoomOut').addEventListener('click',()=>zoom(1/1.25));$('zoomReset').addEventListener('click',()=>{state.view={scale:1,x:0,y:0};applyMapTransform()});
  $('displayModeButton').addEventListener('click',()=>setDisplayMode(displayMode==='exploration'?'presentation':'exploration'));
+  $('mapExpandButton').addEventListener('click',()=>setMapExpanded(!mapExpanded));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mapExpanded&&!$('providerDialog').open&&!$('helpDialog').open&&!$('assumptionsDialog').open)setMapExpanded(false)});
  $('helpButton').addEventListener('click',()=>$('helpDialog').showModal());$('assumptionsButton').addEventListener('click',()=>$('assumptionsDialog').showModal());
  mapPanSetup();
 }
@@ -892,8 +1002,8 @@ async function runSelfTests(){
  restart(3,'CP');return summary;
 }
 
-function initialize(){$('presentationScenarioSelect').innerHTML=$('scenarioSelect').innerHTML;buildMapBase();attachListeners();restart();setInterval(tickReplication,45);const params=new URLSearchParams(location.search);if(params.has('selftest')){const pre=document.createElement('pre');pre.id='selftest-results';pre.style.cssText='position:fixed;z-index:9999;top:10px;left:10px;max-width:570px;max-height:75vh;overflow:auto;background:#021019;color:#fff;padding:20px;border:2px solid #38ccba';pre.textContent='Running delayed replication tests…';document.body.append(pre);runSelfTests().then(result=>{pre.textContent=JSON.stringify(result,null,2)}).catch(error=>{pre.textContent=String(error)})}}
-window.CAPLab={setProvider,setDisplayMode,getDisplayMode:()=>displayMode,getScenarioState:()=>({id:state.scene,step:state.sceneStep,total:state.scene?SCENARIOS[state.scene].steps.length:0,collapsed:mapGuideCollapsed}),snapshot:()=>({mode:state.mode,providerId:state.providerId,architecture:selectedProfile().architecture,n:state.n,leader:state.leader,components:analyze().comps,quorum:analyze().quorum,nodes:copy(state.nodes),links:copy(state.links),committed:copy(state.committed)}),reset:()=>restart(),setMode,setCount,toggleLink,toggleNode,performOperation,loadScenario:scenarioLoad,runSelfTests};
+function initialize(){$('presentationScenarioSelect').innerHTML=$('scenarioSelect').innerHTML;buildMapBase();attachListeners();setDisplayMode('exploration');restart();setInterval(tickReplication,45);const params=new URLSearchParams(location.search);if(params.has('selftest')){const pre=document.createElement('pre');pre.id='selftest-results';pre.style.cssText='position:fixed;z-index:9999;top:10px;left:10px;max-width:570px;max-height:75vh;overflow:auto;background:#021019;color:#fff;padding:20px;border:2px solid #38ccba';pre.textContent='Running delayed replication tests…';document.body.append(pre);runSelfTests().then(result=>{pre.textContent=JSON.stringify(result,null,2)}).catch(error=>{pre.textContent=String(error)})}}
+window.CAPLab={setProvider,setDisplayMode,getDisplayMode:()=>displayMode,setMapExpanded,isMapExpanded:()=>mapExpanded,getScenarioState:()=>({id:state.scene,step:state.sceneStep,total:state.scene?SCENARIOS[state.scene].steps.length:0,collapsed:mapGuideCollapsed}),snapshot:()=>({mode:state.mode,providerId:state.providerId,architecture:selectedProfile().architecture,n:state.n,leader:state.leader,components:analyze().comps,quorum:analyze().quorum,nodes:copy(state.nodes),links:copy(state.links),committed:copy(state.committed)}),reset:()=>restart(),setMode,setCount,toggleLink,toggleNode,performOperation,loadScenario:scenarioLoad,runSelfTests};
 initialize();
 
 </script>

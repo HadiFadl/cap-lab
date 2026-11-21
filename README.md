@@ -18,7 +18,19 @@ The map occupies most of the screen. Instructors can select **CA / CP / AP**, ad
 
 ![CAP Lab Exploration Mode showing the AP settings, provider profiles, interactive map, guided scenario tooltip, replica inspector, and CRUD controls](assets/cap-lab-exploration.png)
 
-Exploration Mode shows the full controls: architecture and provider information, network links and connected components, per-replica CRUD operations, simulation speed, comparison of stored data, event timeline, and CAP insights.
+Exploration Mode places **LIVE / Explained** at the top of the left sidebar, above the configuration controls. The provider selector stays compact: click **Browse providers & details** to compare architectures, select **Use in lab**, or follow **Official documentation** links. Below are network links, connected components, CRUD operations, simulation speed, replica comparisons, and event history.
+
+### Database provider selection
+
+![Provider details popup with teaching profiles, Use in lab controls, and official documentation links](assets/cap-lab-provider-selection.png)
+
+The provider list no longer occupies a large section of the sidebar. The popup provides context for the active CA/CP/AP family, shows which profile is selected, and distinguishes informational examples from selectable simulation profiles. The same popup can be opened from Presentation Mode using **Details**.
+
+### Expanded map
+
+![CAP Lab expanded world map showing geographically distributed replicas and clickable network connections](assets/cap-lab-expanded-map.png)
+
+Select **Expand map** in the upper-right corner of the network panel for a larger, screen-filling topology. Use **Restore map** (or **Esc**) to return to the usual workspace. This display-only action does not reset the simulation, interrupt replication, or change the selected learning scenario.
 
 ## Features
 
@@ -34,6 +46,9 @@ Exploration Mode shows the full controls: architecture and provider information,
 - **AP leaderless replication** with eventually consistent writes and deterministic conflict reconciliation.
 - **Database teaching profiles** including PostgreSQL, MySQL, SQL Server, etcd, MongoDB, CockroachDB, Spanner, Cassandra, CouchDB, ScyllaDB, and DynamoDB, as appropriate to the selected mode.
 - **Exploration / Presentation views** that preserve active network failures, data, and guided-scenario progress when switched.
+- **Compact provider selector and details popup** with architecture explanations, explicit **Use in lab** actions, and links to official documentation.
+- **Expand / Restore map** to temporarily dedicate most of the screen to the world topology without resetting the experiment.
+- **LIVE / Explained at the top of the Exploration sidebar** for immediate visibility of CAP learning feedback.
 - **Five guided scenarios**, each with an on-map instruction panel that advances as students complete the steps.
 - **Runs locally or on GitHub Pages** with no build step. The app state is local to each browser session.
 
@@ -42,13 +57,14 @@ Exploration Mode shows the full controls: architecture and provider information,
 | Interface area | Purpose |
 | --- | --- |
 | **Header** | Displays the application identity, active CAP mode, a view switch, help, and reset. |
-| **Configuration sidebar** (Exploration) | Choose CA/CP/AP, replication factor (3–5), architecture/provider profile, guided scenarios, and simulation tools. |
-| **World map** | Shows geographic replicas. Click a **database icon** to select a replica; click a **dashed network line** to disconnect or reconnect it. Pan and zoom to inspect the topology. |
+| **Left sidebar, top** (Exploration) | Always-visible **LIVE / Explained** CAP insight panel, followed by CA/CP/AP mode, replication factor (3–5), guided scenarios, and simulation tools. |
+| **Provider selector & popup** | The compact current-provider box opens a modal containing each available teaching profile, a **Use in lab** action, and its official documentation link. |
+| **World map** | Shows geographic replicas. Click a **database icon** to select a replica; click a **dashed network line** to disconnect or reconnect it. Pan, zoom, or choose **Expand map** to view the topology nearly full-screen, then **Restore map**. |
 | **Node and link indicators** | Green = service available; amber = restricted; gray = offline; purple = divergent; **yellow flag** = replica is behind; cyan moving dashes = link connected; red broken dashes = partitioned. |
 | **On-map guided panel** | Shows the active experiment, step number, next instruction, and progress. It can be collapsed. |
 | **Replica inspector** (right) | Inspect server role, availability, synchronization status, and stored records; start/stop a replica or perform CRUD operations. |
 | **Bottom monitoring tabs** (Exploration) | Compare stored values across replicas, follow the event timeline, and read CAP explanations. |
-| **Presentation toolbar** | Compact CAP, replica-count, database-provider, and guided-scenario controls above the enlarged map. |
+| **Presentation toolbar** | Compact CAP, replica-count, database-provider, **Details**, and guided-scenario controls above the enlarged map. |
 
 **Important distinction:** A replica may be *online* yet unable to serve a particular request (for example, a CP replica isolated from the majority). A connected cyan link indicates connectivity; it does not necessarily mean a write is currently transferring. Replication delays are *simulated teaching delays*, not measurements of real-world networks.
 
