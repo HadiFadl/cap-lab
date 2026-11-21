@@ -12,13 +12,13 @@ CAP Lab lets students experiment with a simulated distributed database on an int
 
 ![CAP Lab Presentation Mode showing five geographically distributed replicas, a CP network partition, database provider choices, and on-map guided instructions](assets/cap-lab-presentation.png)
 
-The map occupies most of the screen. Instructors can select **CA / CP / AP**, adjust replica count, choose a **database provider profile** using compact icons, and launch guided experiments. The selected replica and the **What's happening?** explanation remain available. A compact instruction panel in the corner of the map walks students through the current scenario.
+The map occupies most of the screen. **LIVE / Explained** stays at the top of the right sidebar. Instructors can select **CA / CP / AP**, adjust replica count, choose a **database provider profile** using compact icons, and launch guided experiments. The selected replica and the **What's happening?** explanation remain available. A compact instruction panel in the corner of the map walks students through the current scenario.
 
 ### Exploration Mode — student experimentation
 
 ![CAP Lab Exploration Mode showing the AP settings, provider profiles, interactive map, guided scenario tooltip, replica inspector, and CRUD controls](assets/cap-lab-exploration.png)
 
-Exploration Mode places **LIVE / Explained** at the top of the left sidebar, above the configuration controls. The provider selector stays compact: click **Browse providers & details** to compare architectures, select **Use in lab**, or follow **Official documentation** links. Below are network links, connected components, CRUD operations, simulation speed, replica comparisons, and event history.
+Exploration Mode places **LIVE / Explained** at the top of the **right sidebar**, above the replica inspector. It stays there in Presentation Mode too. The provider selector stays compact: click **Browse providers & details** to compare architectures, select **Use in lab**, or follow **Official documentation** links. Below are network links, connected components, CRUD operations, simulation speed, replica comparisons, and event history.
 
 ### Database provider selection
 
@@ -32,6 +32,13 @@ The provider list no longer occupies a large section of the sidebar. The popup p
 
 Select **Expand map** in the upper-right corner of the network panel for a larger, screen-filling topology. Use **Restore map** (or **Esc**) to return to the usual workspace. This display-only action does not reset the simulation, interrupt replication, or change the selected learning scenario.
 
+
+### Quick Start popup
+
+![CAP Lab Quick Start popup that opens on page load](assets/cap-lab-quick-start.png)
+
+The help dialog appears automatically when the website loads, explains the first learning steps, and can be closed with **Start exploring**. Select the header **?** button to reopen it.
+
 ## Features
 
 - **Three CAP teaching modes:** CA, CP, and AP, with context-sensitive explanations.
@@ -44,11 +51,12 @@ Select **Expand map** in the upper-right corner of the network panel for a large
 - **CP leader/follower behavior** with a simplified quorum and leader-election model.
 - **CA fixed-primary behavior:** the primary serves clients that can reach it while disconnected followers cannot safely serve strong operations; this does **not** guarantee global availability during a partition.
 - **AP leaderless replication** with eventually consistent writes and deterministic conflict reconciliation.
-- **Database teaching profiles** including PostgreSQL, MySQL, SQL Server, etcd, MongoDB, CockroachDB, Spanner, Cassandra, CouchDB, ScyllaDB, and DynamoDB, as appropriate to the selected mode.
+- **Database teaching profiles** including PostgreSQL, MySQL, SQL Server, etcd, MongoDB, CockroachDB, Spanner, **Firebase Cloud Firestore**, **Neo4j**, **ArangoDB**, Cassandra, CouchDB, and ScyllaDB in carefully defined configurations.
 - **Exploration / Presentation views** that preserve active network failures, data, and guided-scenario progress when switched.
 - **Compact provider selector and details popup** with architecture explanations, explicit **Use in lab** actions, and links to official documentation.
+- **Quick Start on page load:** the Help popup appears when the website opens and can be dismissed or reopened using **?** in the header.
 - **Expand / Restore map** to temporarily dedicate most of the screen to the world topology without resetting the experiment.
-- **LIVE / Explained at the top of the Exploration sidebar** for immediate visibility of CAP learning feedback.
+- **LIVE / Explained at the top of the right sidebar in both modes**, above replica controls, for immediate CAP learning feedback.
 - **Five guided scenarios**, each with an on-map instruction panel that advances as students complete the steps.
 - **Runs locally or on GitHub Pages** with no build step. The app state is local to each browser session.
 
@@ -57,7 +65,8 @@ Select **Expand map** in the upper-right corner of the network panel for a large
 | Interface area | Purpose |
 | --- | --- |
 | **Header** | Displays the application identity, active CAP mode, a view switch, help, and reset. |
-| **Left sidebar, top** (Exploration) | Always-visible **LIVE / Explained** CAP insight panel, followed by CA/CP/AP mode, replication factor (3–5), guided scenarios, and simulation tools. |
+| **Left sidebar** (Exploration) | CA/CP/AP configuration, replication factor (3–5), provider selector, network links, guided scenarios, and simulation tools. |
+| **Right sidebar, top** (both modes) | Always-visible **LIVE / Explained** insight panel followed by the replica inspector and request controls. |
 | **Provider selector & popup** | The compact current-provider box opens a modal containing each available teaching profile, a **Use in lab** action, and its official documentation link. |
 | **World map** | Shows geographic replicas. Click a **database icon** to select a replica; click a **dashed network line** to disconnect or reconnect it. Pan, zoom, or choose **Expand map** to view the topology nearly full-screen, then **Restore map**. |
 | **Node and link indicators** | Green = service available; amber = restricted; gray = offline; purple = divergent; **yellow flag** = replica is behind; cyan moving dashes = link connected; red broken dashes = partitioned. |
@@ -92,7 +101,7 @@ For a contrasting activity, use **Diverging AP writes** to create different valu
 
 Download or clone this repository and open **`index.html`** in a modern browser. All main application logic, styles, and map drawing are embedded in that file. Provider logos may be loaded from an external CDN when available; local fallback icons are supplied.
 
-No Node.js, database server, API key, or command-line build is needed.
+No Node.js, database server, API key, or command-line build is needed. The **Quick Start** dialog appears on each page load; dismiss it with **Start exploring** or reopen with the **?** button.
 
 ## Publish on GitHub Pages
 
@@ -103,7 +112,7 @@ No Node.js, database server, API key, or command-line build is needed.
 5. Click **Save**, and check the Pages/Actions deployment status.
 6. Once published, the URL is typically `https://YOUR-USERNAME.github.io/cap-lab/`.
 
-If the website is already published, upload **`README.md`**, **`LICENSE`**, and the **`assets/` screenshots** to update the repository documentation without changing the running simulator.
+If the website is already published, replace **`index.html`** with this updated lab and upload **`README.md`** and **`assets/` screenshots** so the public documentation matches the interface.
 
 ## Repository structure
 
@@ -115,7 +124,10 @@ cap-lab/
 ├── .nojekyll                          # Avoid unnecessary Jekyll processing
 └── assets/
     ├── cap-lab-presentation.png       # Actual Presentation Mode screenshot
-    └── cap-lab-exploration.png        # Actual Exploration Mode screenshot
+    ├── cap-lab-exploration.png        # Actual Exploration Mode screenshot
+    ├── cap-lab-provider-selection.png # Provider details and selection
+    ├── cap-lab-expanded-map.png       # Full-screen map
+    └── cap-lab-quick-start.png        # Help popup on page load
 ```
 
 ## Testing and troubleshooting
@@ -132,7 +144,8 @@ cap-lab/
 - **CA** is a single-primary teaching profile. Its reachable primary may keep working during a partition, but isolated clients and replicas lose availability; CA cannot guarantee both C and CAP availability under arbitrary partitions.
 - **CP** uses a simplified majority-quorum, leader-election, and replicated-log model rather than a full implementation of Raft/Paxos or any vendor's specific failover rules.
 - **AP** represents a leaderless, eventually consistent design with a chosen deterministic conflict-resolution method. Real products may offer multiple consistency settings and reconciliation strategies.
-- **Provider profiles are illustrative**. They are not compatibility tests, vendor certifications, or guarantees about all deployment configurations.
+- **Provider profiles are illustrative**. Firestore models one Paxos split; Neo4j models one database Raft group; ArangoDB models one shard with majority write concern. None are vendor emulators. Redis Active-Active is deliberately excluded because its CRDT conflict reconciliation differs from this simulator’s Last-Write-Wins model; HBase is excluded because its region architecture is not modeled. SQLite is excluded because it is not a distributed database.
+- These profiles are not compatibility tests, vendor certifications, or guarantees about all deployment configurations.
 - **No persistent shared backend:** each browser maintains its own transient simulation; reloading resets the exercise and there is no built-in student grading or submission collection.
 
 ## License and third-party material
