@@ -42,19 +42,6 @@ Download `index.html` and open it in a modern browser. No installation, server, 
 
 The game is responsive and can be used in class on a computer, laptop, or tablet. Some interaction areas are easier to use on wider screens.
 
-## Publish with GitHub Pages
-
-**As a standalone repository:**
-
-1. Create a public repository such as `cap-challenge`.
-2. Upload `index.html`, `.nojekyll`, `README.md`, `LICENSE` and the `assets/` screenshots into its root.
-3. Open **Settings → Pages → Build and deployment**, set **Deploy from a branch**, branch **main**, folder **/ (root)**, and save.
-4. Once published, share `https://YOUR-USERNAME.github.io/cap-challenge/` with students.
-
-**As a game alongside an existing CAP Lab repository:** Put `index.html` into the folder **`game/`** in the existing `cap-lab` repository. Its student link will be `https://YOUR-USERNAME.github.io/cap-lab/game/`. An additional ZIP package with the appropriate `game/` folder layout is provided.
-
-GitHub Pages serves static files over HTTPS. Each student runs an independent, in-browser simulation.
-
 ## Educational and privacy notes
 
 - This is **a learning simulation**, not an actual PostgreSQL, SQL Server, MongoDB, etc. distributed cluster, or a full implementation of Raft/Paxos.
